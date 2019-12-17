@@ -1,0 +1,32 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <mvc:annotation-driven/>
+
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    
+    <bean id="baseUri" class="java.net.URI">
+    <constructor-arg value="http://localhost:8080/api"/>
+  </bean>
+
+  <bean id="config" class="org.springframework.data.rest.webmvc.RepositoryRestConfiguration"
+        p:jsonpParamName="callback"
+        p:jsonpOnErrParamName="errback"
+        p:baseUri-ref="baseUri">
+    <property name="domainTypeToRepositoryMappings">
+      <map key-type="java.lang.Class" value-type="java.lang.Class">
+        <entry key="style.tree.pirates.repository.User"
+               value="style.tree.pirates.repository.UserRepository"/>
+        <entry key="style.tree.pirates.repository.Role"
+               value="style.tree.pirates.repository.RoleRepository"/>
+      </map>
+    </property>
+    
+</beans>
+
+
+
+

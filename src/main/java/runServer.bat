@@ -1,0 +1,1 @@
+java -classpath . style.tree.pirates.gameserver.Dedicated
